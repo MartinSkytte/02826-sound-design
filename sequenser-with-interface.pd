@@ -9,7 +9,7 @@
 -1 -1 0 1;
 #X obj 22 -82 tgl 15 0 start_stop start_stop_init Play/Pause 17 8 0
 15 -262144 -162280 -262144 0 1;
-#N canvas -2 549 349 269 internal 1;
+#N canvas 0 549 349 269 internal 1;
 #N canvas 725 271 356 300 bpm-counter 0;
 #X msg 135 241 color \$1 22;
 #X obj 135 274 s bpm_color;
@@ -49,28 +49,34 @@
 #X connect 6 0 1 0;
 #X restore 102 7 pd bpm-metro;
 #X obj 242 8 loadbang;
-#N canvas 663 195 655 177 init 0;
-#X obj 305 21 inlet;
-#X msg 39 91 120;
-#X obj 39 122 s bpm_init;
-#X msg 123 91 0;
-#X obj 123 122 s start_stop_init;
-#X msg 245 89 0;
-#X obj 245 122 s instrument_init;
-#X obj 365 123 s time-sig-beat-init;
-#X msg 365 89 0;
-#X msg 499 89 0;
-#X obj 499 123 s time-sig-bass-init;
+#N canvas 663 195 806 177 init 0;
+#X obj 376 -10 inlet;
+#X msg 39 68 120;
+#X obj 39 99 s bpm_init;
+#X msg 123 68 0;
+#X obj 123 99 s start_stop_init;
+#X msg 245 66 0;
+#X obj 245 99 s instrument_init;
+#X obj 365 100 s time-sig-beat-init;
+#X msg 365 66 0;
+#X msg 499 66 0;
+#X obj 499 100 s time-sig-bass-init;
+#X obj 634 99 s load_save_status;
+#X obj 634 72 list2symbol;
+#X msg 634 47 Ready;
 #X connect 0 0 1 0;
 #X connect 0 0 3 0;
 #X connect 0 0 5 0;
 #X connect 0 0 8 0;
 #X connect 0 0 9 0;
+#X connect 0 0 13 0;
 #X connect 1 0 2 0;
 #X connect 3 0 4 0;
 #X connect 5 0 6 0;
 #X connect 8 0 7 0;
 #X connect 9 0 10 0;
+#X connect 12 0 11 0;
+#X connect 13 0 12 0;
 #X restore 242 39 pd init;
 #X msg 10 105 \; pd dsp \$1;
 #X obj 10 74 r start_stop;
@@ -245,8 +251,8 @@
 #X connect 3 0 5 0;
 #X connect 4 0 3 0;
 #X restore 10 31 pd time-names;
-#N canvas 881 666 494 282 mixer-logic 1;
-#N canvas 1143 0 755 554 beat-logic 1;
+#N canvas 880 550 494 282 mixer-logic 0;
+#N canvas 1140 0 755 494 beat-logic 1;
 #X obj 17 13 cnv 15 715 300 empty empty empty 20 12 0 14 -162280 -66577
 0;
 #X obj 309 29 r instrument;
@@ -260,7 +266,7 @@
 #X obj 168 193 beat-checkbox-group 6;
 #X obj 309 193 beat-checkbox-group 7;
 #X obj 450 193 beat-checkbox-group 8;
-#X obj 17 238 cnv 15 715 300 empty empty empty 20 12 0 14 -233017 -66577
+#X obj 17 238 cnv 15 715 230 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #N canvas 980 273 450 300 kick 0;
 #X obj 129 190 osc~ 200;
@@ -795,6 +801,128 @@
 #X connect 14 0 16 0;
 #X connect 15 0 13 1;
 #X restore 101 105 pd mixer-logic;
+#N canvas 180 251 1192 528 save-logic 0;
+#X obj 75 -30 r save-current-melody;
+#X obj 75 1 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 126 68 s load_save_status;
+#X obj 126 41 list2symbol;
+#X msg 126 16 saving;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-0 65 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 270 -31 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-1 65 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 487 -30 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-2 65 float 3;
+#A 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0
+0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 702 -30 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-3 65 float 3;
+#A 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0
+0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 916 -31 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-4 65 float 3;
+#A 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 270 133 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-5 65 float 3;
+#A 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0
+0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 487 134 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-6 65 float 3;
+#A 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0
+0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 702 134 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-7 65 float 3;
+#A 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 916 133 graph;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array a-8 65 float 3;
+#A 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+;
+#X coords 0 1 65 0 200 140 1 0 0;
+#X restore 270 303 graph;
+#X obj 79 382 s load_save_status;
+#X obj 79 355 list2symbol;
+#X msg 79 330 Files saved;
+#X obj 21 435 s load_save_status;
+#X obj 21 408 list2symbol;
+#X msg 21 383 Ready;
+#X obj 21 331 del 2000;
+#X obj 21 60 del 3000;
+#X obj 21 284 t b;
+#X msg 75 132 \; a-0 write a-0.ins a-1 write a-1.ins a-2 write a-2.ins
+a-3 write a-3.ins a-4 write a-4.ins a-5 write a-5.ins a-6 write a-6.ins
+a-7 write a-7.ins a-8 write a-8.ins;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 15 0 14 0;
+#X connect 16 0 15 0;
+#X connect 18 0 17 0;
+#X connect 19 0 18 0;
+#X connect 20 0 19 0;
+#X connect 22 0 20 0;
+#X connect 22 0 16 0;
+#X connect 23 0 22 0;
+#X restore 239 79 pd save-logic;
+#N canvas 1106 530 450 407 load-logic 1;
+#X obj 39 11 r Load-current-melody;
+#X obj 39 47 t b;
+#X msg 39 83 a-0 read a-0.ins \; a-1 read a-1.ins \; a-2 read a-2.ins
+\; a-3 read a-3.ins \; a-4 read a-4.ins \; a-5 read a-5.ins \; a-6
+read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \;;
+#X obj 39 265 until;
+#X msg 39 239 65;
+#X obj 39 294 i;
+#X obj 73 294 + 1;
+#X floatatom 132 240 5 0 0 0 - - -;
+#X msg 132 276 set a-\$1;
+#X obj 132 311 tabread a-0;
+#X obj 39 214 t b;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 7 0;
+#X connect 2 0 10 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 5 0 9 0;
+#X connect 6 0 5 1;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 10 0 4 0;
+#X restore 240 107 pd load-logic;
 #X connect 1 0 0 0;
 #X connect 1 0 6 0;
 #X connect 2 0 3 0;
@@ -808,128 +936,128 @@
 0 10 -262144 -1 -1 0;
 #X symbolatom 107 36 12 0 0 0 Instrument instrument_name do_not_use
 ;
-#X obj 55 96 tgl 25 0 onSeq1 onSeq-col1 empty 17 7 0 10 -1 -33289 -262144
-1 1;
+#X obj 55 96 tgl 25 0 onSeq1 onSeq-col1 empty 17 7 0 10 -262144 -33289
+-262144 0 1;
 #X obj 85 96 tgl 25 0 onSeq2 onSeq-col2 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
 #X obj 115 96 tgl 25 0 onSeq3 onSeq-col3 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
 #X obj 145 96 tgl 25 0 onSeq4 onSeq-col4 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
-#X obj 185 96 tgl 25 0 onSeq5 onSeq-col5 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 96 tgl 25 0 onSeq5 onSeq-col5 empty 17 7 0 10 -262144 -33289
+-262144 0 1;
 #X obj 215 96 tgl 25 0 onSeq6 onSeq-col6 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
 #X obj 245 96 tgl 25 0 onSeq7 onSeq-col7 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
 #X obj 275 96 tgl 25 0 onSeq8 onSeq-col8 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
-#X obj 55 126 tgl 25 0 onSeq9 onSeq-col9 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 126 tgl 25 0 onSeq9 onSeq-col9 empty 17 7 0 10 -262144 -33289
+-262144 0 1;
 #X obj 85 126 tgl 25 0 onSeq10 onSeq-col10 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 126 tgl 25 0 onSeq11 onSeq-col11 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 126 tgl 25 0 onSeq12 onSeq-col12 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 126 tgl 25 0 onSeq13 onSeq-col13 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 126 tgl 25 0 onSeq13 onSeq-col13 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 126 tgl 25 0 onSeq14 onSeq-col14 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 126 tgl 25 0 onSeq15 onSeq-col15 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 275 126 tgl 25 0 onSeq16 onSeq-col16 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 156 tgl 25 0 onSeq17 onSeq-col17 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 156 tgl 25 0 onSeq17 onSeq-col17 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 85 156 tgl 25 0 onSeq18 onSeq-col18 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 156 tgl 25 0 onSeq19 onSeq-col19 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 156 tgl 25 0 onSeq20 onSeq-col20 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 156 tgl 25 0 onSeq21 onSeq-col21 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 156 tgl 25 0 onSeq21 onSeq-col21 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 156 tgl 25 0 onSeq22 onSeq-col22 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 156 tgl 25 0 onSeq23 onSeq-col23 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 275 156 tgl 25 0 onSeq24 onSeq-col24 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 186 tgl 25 0 onSeq25 onSeq-col25 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 186 tgl 25 0 onSeq25 onSeq-col25 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 85 186 tgl 25 0 onSeq26 onSeq-col26 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 186 tgl 25 0 onSeq27 onSeq-col27 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 186 tgl 25 0 onSeq28 onSeq-col28 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 186 tgl 25 0 onSeq29 onSeq-col29 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 186 tgl 25 0 onSeq29 onSeq-col29 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 186 tgl 25 0 onSeq30 onSeq-col30 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 186 tgl 25 0 onSeq31 onSeq-col31 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 275 186 tgl 25 0 onSeq32 onSeq-col32 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 226 tgl 25 0 onSeq33 onSeq-col33 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 226 tgl 25 0 onSeq33 onSeq-col33 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 85 226 tgl 25 0 onSeq34 onSeq-col34 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 226 tgl 25 0 onSeq35 onSeq-col35 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 226 tgl 25 0 onSeq36 onSeq-col36 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 226 tgl 25 0 onSeq37 onSeq-col37 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 226 tgl 25 0 onSeq37 onSeq-col37 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 226 tgl 25 0 onSeq38 onSeq-col38 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 226 tgl 25 0 onSeq39 onSeq-col39 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 275 226 tgl 25 0 onSeq40 onSeq-col40 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 256 tgl 25 0 onSeq41 onSeq-col41 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 256 tgl 25 0 onSeq41 onSeq-col41 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 85 256 tgl 25 0 onSeq42 onSeq-col42 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 256 tgl 25 0 onSeq43 onSeq-col43 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 256 tgl 25 0 onSeq44 onSeq-col44 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 256 tgl 25 0 onSeq45 onSeq-col45 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 256 tgl 25 0 onSeq45 onSeq-col45 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 256 tgl 25 0 onSeq46 onSeq-col46 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 256 tgl 25 0 onSeq47 onSeq-col47 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 275 256 tgl 25 0 onSeq48 onSeq-col48 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 286 tgl 25 0 onSeq49 onSeq-col49 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 286 tgl 25 0 onSeq49 onSeq-col49 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 85 286 tgl 25 0 onSeq50 onSeq-col50 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 286 tgl 25 0 onSeq51 onSeq-col51 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 286 tgl 25 0 onSeq52 onSeq-col52 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 286 tgl 25 0 onSeq53 onSeq-col53 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 286 tgl 25 0 onSeq53 onSeq-col53 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 286 tgl 25 0 onSeq54 onSeq-col54 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 286 tgl 25 0 onSeq55 onSeq-col55 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 275 286 tgl 25 0 onSeq56 onSeq-col56 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 316 tgl 25 0 onSeq57 onSeq-col57 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 55 316 tgl 25 0 onSeq57 onSeq-col57 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 85 316 tgl 25 0 onSeq58 onSeq-col58 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 316 tgl 25 0 onSeq59 onSeq-col59 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 145 316 tgl 25 0 onSeq60 onSeq-col60 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 185 316 tgl 25 0 onSeq61 onSeq-col61 empty 17 7 0 10 -1 -33289
--262144 1 1;
+#X obj 185 316 tgl 25 0 onSeq61 onSeq-col61 empty 17 7 0 10 -262144
+-33289 -262144 0 1;
 #X obj 215 316 tgl 25 0 onSeq62 onSeq-col62 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 245 316 tgl 25 0 onSeq63 onSeq-col63 empty 17 7 0 10 -262144
@@ -939,69 +1067,69 @@
 #X obj 341 -18 cnv 15 540 170 empty empty empty 20 12 0 14 -191407
 -66577 0;
 #X obj 354 20 vradio 15 1 0 8 bass-radio-1-s bass-radio-1-r empty 0
--8 0 10 -166441 -1 -262144 7;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 370 20 vradio 15 1 0 8 bass-radio-2-s bass-radio-2-r empty 0
--8 0 10 -166441 -1 -262144 7;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 386 20 vradio 15 1 0 8 bass-radio-3-s bass-radio-3-r empty 0
--8 0 10 -166441 -1 -262144 3;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 402 20 vradio 15 1 0 8 bass-radio-4-s bass-radio-4-r empty 0
--8 0 10 -166441 -1 -262144 3;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 418 20 vradio 15 1 0 8 bass-radio-5-s bass-radio-5-r empty 0
--8 0 10 -166441 -1 -262144 2;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 434 20 vradio 15 1 0 8 bass-radio-6-s bass-radio-6-r empty 0
--8 0 10 -166441 -1 -262144 2;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 450 20 vradio 15 1 0 8 bass-radio-7-s bass-radio-7-r empty 0
--8 0 10 -166441 -1 -262144 3;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 466 20 vradio 15 1 0 8 bass-radio-8-s bass-radio-8-r empty 0
--8 0 10 -166441 -1 -262144 3;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 482 20 vradio 15 1 0 8 bass-radio-9-s bass-radio-9-r empty 0
--8 0 10 -166441 -1 -262144 2;
+-8 0 10 -166441 -1 -262144 0;
 #X obj 498 20 vradio 15 1 0 8 bass-radio-10-s bass-radio-10-r empty
 0 -8 0 10 -166441 -1 -262144 0;
 #X obj 514 20 vradio 15 1 0 8 bass-radio-11-s bass-radio-11-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 530 20 vradio 15 1 0 8 bass-radio-12-s bass-radio-12-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 546 20 vradio 15 1 0 8 bass-radio-13-s bass-radio-13-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 562 20 vradio 15 1 0 8 bass-radio-14-s bass-radio-14-r empty
-0 -8 0 10 -166441 -1 -262144 5;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 578 20 vradio 15 1 0 8 bass-radio-15-s bass-radio-15-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 594 20 vradio 15 1 0 8 bass-radio-16-s bass-radio-16-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 610 20 vradio 15 1 0 8 bass-radio-17-s bass-radio-17-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 626 20 vradio 15 1 0 8 bass-radio-18-s bass-radio-18-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 642 20 vradio 15 1 0 8 bass-radio-19-s bass-radio-19-r empty
-0 -8 0 10 -166441 -1 -262144 3;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 658 20 vradio 15 1 0 8 bass-radio-20-s bass-radio-20-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 674 20 vradio 15 1 0 8 bass-radio-21-s bass-radio-21-r empty
-0 -8 0 10 -166441 -1 -262144 4;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 690 20 vradio 15 1 0 8 bass-radio-22-s bass-radio-22-r empty
-0 -8 0 10 -166441 -1 -262144 3;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 706 20 vradio 15 1 0 8 bass-radio-23-s bass-radio-23-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 722 20 vradio 15 1 0 8 bass-radio-24-s bass-radio-24-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 738 20 vradio 15 1 0 8 bass-radio-25-s bass-radio-25-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 754 20 vradio 15 1 0 8 bass-radio-26-s bass-radio-26-r empty
 0 -8 0 10 -166441 -1 -262144 0;
 #X obj 770 20 vradio 15 1 0 8 bass-radio-27-s bass-radio-27-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 786 20 vradio 15 1 0 8 bass-radio-28-s bass-radio-28-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 802 20 vradio 15 1 0 8 bass-radio-29-s bass-radio-29-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 818 20 vradio 15 1 0 8 bass-radio-30-s bass-radio-30-r empty
-0 -8 0 10 -166441 -1 -262144 6;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 834 20 vradio 15 1 0 8 bass-radio-31-s bass-radio-31-r empty
-0 -8 0 10 -166441 -1 -262144 2;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 850 20 vradio 15 1 0 8 bass-radio-32-s bass-radio-32-r empty
-0 -8 0 10 -166441 -1 -262144 7;
+0 -8 0 10 -166441 -1 -262144 0;
 #X obj 252 -73 tgl 8 0 empty empty BassBeatsAndMelody 17 7 0 30 -1
 -1 -191407 0 1;
 #X obj 52 5 tgl 8 0 empty empty Beats 15 5 0 20 -1 -1 -262144 0 1;
@@ -1012,7 +1140,7 @@
 #X symbolatom 250 35 10 0 0 0 Time-sig time-sig-beat-r do_not_use;
 #X symbolatom 483 -6 10 0 0 0 Time-sig time-sig-bass-r do_not_use;
 #X obj 556 -6 hradio 15 1 0 4 time-sig-bass-s time-sig-bass-init empty
-0 -8 0 10 -262144 -1 -1 1;
+0 -8 0 10 -262144 -1 -1 0;
 #X obj 340 187 cnv 15 320 180 empty empty empty 20 12 0 14 -99865 -66577
 0;
 #X obj 351 197 cnv 15 85 160 empty empty empty 20 12 0 14 -162280 -66577
@@ -1024,27 +1152,27 @@
 0;
 #X text 394 203 R;
 #X obj 415 222 vsl 10 120 0 1 0 0 master-volume-s master-volume-r empty
-0 -9 0 10 -128992 -191407 -1 11900 1;
+0 -9 0 10 -128992 -191407 -1 0 1;
 #X obj 447 197 cnv 15 60 160 empty empty empty 20 12 0 14 -162280 -66577
 0;
 #X obj 460 220 vu 15 120 beats-vu empty -1 -8 0 10 -1 -162280 1 0;
 #X obj 484 220 vsl 10 120 0 1 0 0 beats-volume-s beats-volume-r empty
-0 -9 0 10 -128992 -191407 -1 10700 1;
+0 -9 0 10 -128992 -191407 -1 0 1;
 #X text 460 201 Beats;
 #X obj 518 197 cnv 15 60 160 empty empty empty 20 12 0 14 -162280 -66577
 0;
 #X obj 531 220 vu 15 120 bass-vu empty -1 -8 0 10 -1 -162280 1 0;
 #X obj 555 220 vsl 10 120 0 1 0 0 bass-volume-s bass-volume-r empty
-0 -9 0 10 -128992 -191407 -1 6900 1;
+0 -9 0 10 -128992 -191407 -1 0 1;
 #X text 531 201 Bass;
 #X obj 589 197 cnv 15 60 160 empty empty empty 20 12 0 14 -162280 -66577
 0;
 #X obj 602 220 vu 15 120 bass-vu empty -1 -8 0 10 -1 -162280 1 0;
 #X obj 626 220 vsl 10 120 0 1 0 0 bass-volume-s bass-volume-r empty
-0 -9 0 10 -128992 -191407 -1 5300 1;
+0 -9 0 10 -128992 -191407 -1 0 1;
 #X text 599 201 Chords;
-#X obj 619 -62 bng 15 250 50 0 save-current-melody do_not_use Save
-17 7 0 10 -162280 -1 -262144;
-#X obj 669 -62 bng 15 250 50 0 Load-current-melody do_not_use Load
-17 7 0 10 -162280 -1 -262144;
-#X symbolatom 619 -85 15 0 0 0 - load_save_status do_not_use;
+#X obj 619 -62 bng 15 250 50 0 save-current-melody empty Save 17 7
+0 10 -162280 -1 -262144;
+#X obj 669 -62 bng 15 250 50 0 Load-current-melody empty Load 17 7
+0 10 -162280 -1 -262144;
+#X symbolatom 619 -85 15 0 0 0 - load_save_status -;
