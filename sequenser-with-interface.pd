@@ -5,7 +5,7 @@
 0;
 #X obj 58 -60 nbx 5 14 -1e+037 1e+037 0 0 bpm bpm_init BPM: -36 8 0
 15 -262144 -1 -262144 120 256;
-#X obj 139 -61 tgl 15 0 bpm_counter bpm_color empty 17 7 0 10 -258699
+#X obj 139 -61 tgl 15 0 bpm_counter bpm_color empty 17 7 0 10 -195568
 -1 -1 0 1;
 #X obj 22 -82 tgl 15 0 start_stop start_stop_init Play/Pause 17 8 0
 15 -262144 -162280 -262144 0 1;
@@ -163,7 +163,7 @@
 #X connect 9 0 4 0;
 #X connect 10 0 9 1;
 #X restore 102 43 pd tick;
-#N canvas 267 196 700 474 inst-names 1;
+#N canvas 267 196 700 474 inst-names 0;
 #X obj 240 358 s instrument_name;
 #X obj 214 26 r instrument;
 #X msg 70 190 kick;
@@ -268,153 +268,6 @@
 #X obj 450 193 beat-checkbox-group 8;
 #X obj 17 238 cnv 15 715 230 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#N canvas 0 0 931 877 kick 0;
-#X obj 41 88 osc~ 200;
-#X obj 41 119 *~;
-#X obj 107 89 sqrt~;
-#X obj 40 31 *~ 15;
-#X obj 40 55 +~ 70;
-#X obj 40 140 *~ 0.5;
-#X msg 105 41 0;
-#X obj 41 4 *~;
-#X obj 41 -65 t b;
-#X msg 69 -64 2;
-#X msg 98 -64 800;
-#X obj 94 -91 loadbang;
-#X obj 41 -37 vead;
-#X obj 280 209 vline~;
-#X obj 280 230 *~;
-#X obj 425 171 noise~;
-#X obj 430 304 *~;
-#X obj 420 101 t b b;
-#X obj 683 211 vline~;
-#X obj 707 241 *~;
-#X obj 708 261 *~;
-#X obj 824 218 switch~;
-#X obj 824 198 tgl 15 0 empty empty empty 0 -6 0 10 -262144 -1 -1 0
-1;
-#X msg 808 177 1;
-#X msg 839 177 0;
-#X floatatom 839 138 5 0 0 0 - - -;
-#X obj 839 156 sel 0;
-#X obj 401 68 t b b b;
-#X obj 420 507 vline~;
-#X obj 380 540 *~;
-#X obj 216 270 +~ 20;
-#X obj 259 272 +~ 33;
-#X obj 301 271 +~ 46;
-#X obj 343 271 +~ 59;
-#X obj 385 271 +~ 72;
-#X obj 298 413 *~ 70;
-#X obj 342 414 *~ 80;
-#X obj 388 413 *~ 90;
-#X obj 436 413 *~ 100;
-#X obj 707 283 *~;
-#X obj 444 268 lop~ 100;
-#X obj 537 328 *~;
-#X msg 279 187 11 1 0 \, 0 50 1;
-#X obj 281 390 vcf~ 70;
-#X obj 213 388 vcf~ 70;
-#X obj 253 413 *~ 35;
-#X obj 342 390 vcf~ 70;
-#X obj 390 390 vcf~ 70;
-#X obj 438 390 vcf~ 70;
-#X msg 682 190 1 2 0 \, 0 25 2;
-#X msg 420 487 1 2 0 \, 0 100 2;
-#X text 395 155 noise impulse;
-#X text 233 170 frequency descends a bit;
-#X text 683 173 impulse envelope;
-#X text 766 234 audio computation on/off;
-#X text 430 371 formants;
-#X obj 466 297 lop~ 300;
-#X text 421 521 a final envelope;
-#X msg 839 100 1 0 \, 0 120;
-#X obj 839 119 line 1 120;
-#X obj 404 206 expr~ if ($v1 == 0 \, 0 \, (if ($v1 < 0 \, -1 \, 1)))
-;
-#X obj 404 226 *~ 0.5;
-#X text 476 191 TOTAL DISTORTION;
-#X text 885 613 sg 2008;
-#X obj 401 36 inlet;
-#X obj 380 586 outlet~;
-#X connect 0 0 1 0;
-#X connect 1 0 5 0;
-#X connect 2 0 1 1;
-#X connect 3 0 4 0;
-#X connect 4 0 0 0;
-#X connect 6 0 0 1;
-#X connect 7 0 3 0;
-#X connect 8 0 6 0;
-#X connect 8 0 12 0;
-#X connect 9 0 12 1;
-#X connect 10 0 12 2;
-#X connect 11 0 9 0;
-#X connect 11 0 10 0;
-#X connect 12 0 2 0;
-#X connect 12 0 7 0;
-#X connect 12 0 7 1;
-#X connect 13 0 14 0;
-#X connect 13 0 14 1;
-#X connect 14 0 30 0;
-#X connect 14 0 31 0;
-#X connect 14 0 32 0;
-#X connect 14 0 33 0;
-#X connect 14 0 34 0;
-#X connect 15 0 60 0;
-#X connect 16 0 43 0;
-#X connect 16 0 44 0;
-#X connect 16 0 46 0;
-#X connect 16 0 47 0;
-#X connect 16 0 48 0;
-#X connect 17 0 49 0;
-#X connect 17 0 50 0;
-#X connect 17 1 42 0;
-#X connect 18 0 19 0;
-#X connect 18 0 19 1;
-#X connect 19 0 20 0;
-#X connect 19 0 20 1;
-#X connect 20 0 16 0;
-#X connect 20 0 39 0;
-#X connect 20 0 39 1;
-#X connect 22 0 21 0;
-#X connect 23 0 22 0;
-#X connect 24 0 22 0;
-#X connect 25 0 26 0;
-#X connect 26 0 24 0;
-#X connect 27 0 58 0;
-#X connect 27 1 17 0;
-#X connect 27 2 23 0;
-#X connect 28 0 29 1;
-#X connect 29 0 65 0;
-#X connect 30 0 44 1;
-#X connect 31 0 43 1;
-#X connect 32 0 46 1;
-#X connect 33 0 47 1;
-#X connect 34 0 48 1;
-#X connect 35 0 29 0;
-#X connect 36 0 29 0;
-#X connect 37 0 29 0;
-#X connect 38 0 29 0;
-#X connect 39 0 41 1;
-#X connect 40 0 16 1;
-#X connect 40 0 56 0;
-#X connect 41 0 65 0;
-#X connect 42 0 13 0;
-#X connect 43 0 35 0;
-#X connect 44 0 45 0;
-#X connect 45 0 29 0;
-#X connect 46 0 36 0;
-#X connect 47 0 37 0;
-#X connect 48 0 38 0;
-#X connect 49 0 18 0;
-#X connect 50 0 28 0;
-#X connect 56 0 41 0;
-#X connect 58 0 59 0;
-#X connect 59 0 25 0;
-#X connect 60 0 61 0;
-#X connect 61 0 40 0;
-#X connect 64 0 27 0;
-#X restore 27 298 pd kick;
 #X obj 27 266 play-instrument 0;
 #X obj 144 266 play-instrument 1;
 #X obj 261 266 play-instrument 2;
@@ -875,6 +728,153 @@
 #X connect 30 0 19 0;
 #X connect 31 0 2 0;
 #X restore 432 374 pd crash;
+#N canvas 0 0 931 877 kick 0;
+#X obj 41 88 osc~ 200;
+#X obj 41 119 *~;
+#X obj 107 89 sqrt~;
+#X obj 40 31 *~ 15;
+#X obj 40 55 +~ 70;
+#X obj 40 140 *~ 0.5;
+#X msg 105 41 0;
+#X obj 41 4 *~;
+#X obj 41 -65 t b;
+#X msg 69 -64 2;
+#X msg 98 -64 800;
+#X obj 94 -91 loadbang;
+#X obj 41 -37 vead;
+#X obj 280 209 vline~;
+#X obj 280 230 *~;
+#X obj 425 171 noise~;
+#X obj 430 304 *~;
+#X obj 420 101 t b b;
+#X obj 683 211 vline~;
+#X obj 707 241 *~;
+#X obj 708 261 *~;
+#X obj 824 218 switch~;
+#X obj 824 198 tgl 15 0 empty empty empty 0 -6 0 10 -262144 -1 -1 0
+1;
+#X msg 808 177 1;
+#X msg 839 177 0;
+#X floatatom 839 138 5 0 0 0 - - -;
+#X obj 839 156 sel 0;
+#X obj 401 68 t b b b;
+#X obj 420 507 vline~;
+#X obj 380 540 *~;
+#X obj 216 270 +~ 20;
+#X obj 259 272 +~ 33;
+#X obj 301 271 +~ 46;
+#X obj 343 271 +~ 59;
+#X obj 385 271 +~ 72;
+#X obj 298 413 *~ 70;
+#X obj 342 414 *~ 80;
+#X obj 388 413 *~ 90;
+#X obj 436 413 *~ 100;
+#X obj 707 283 *~;
+#X obj 444 268 lop~ 100;
+#X obj 537 328 *~;
+#X msg 279 187 11 1 0 \, 0 50 1;
+#X obj 281 390 vcf~ 70;
+#X obj 213 388 vcf~ 70;
+#X obj 253 413 *~ 35;
+#X obj 342 390 vcf~ 70;
+#X obj 390 390 vcf~ 70;
+#X obj 438 390 vcf~ 70;
+#X msg 682 190 1 2 0 \, 0 25 2;
+#X msg 420 487 1 2 0 \, 0 100 2;
+#X text 395 155 noise impulse;
+#X text 233 170 frequency descends a bit;
+#X text 683 173 impulse envelope;
+#X text 766 234 audio computation on/off;
+#X text 430 371 formants;
+#X obj 466 297 lop~ 300;
+#X text 421 521 a final envelope;
+#X msg 839 100 1 0 \, 0 120;
+#X obj 839 119 line 1 120;
+#X obj 404 206 expr~ if ($v1 == 0 \, 0 \, (if ($v1 < 0 \, -1 \, 1)))
+;
+#X obj 404 226 *~ 0.5;
+#X text 476 191 TOTAL DISTORTION;
+#X text 885 613 sg 2008;
+#X obj 401 36 inlet;
+#X obj 380 586 outlet~;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 6 0 0 1;
+#X connect 7 0 3 0;
+#X connect 8 0 6 0;
+#X connect 8 0 12 0;
+#X connect 9 0 12 1;
+#X connect 10 0 12 2;
+#X connect 11 0 9 0;
+#X connect 11 0 10 0;
+#X connect 12 0 2 0;
+#X connect 12 0 7 0;
+#X connect 12 0 7 1;
+#X connect 13 0 14 0;
+#X connect 13 0 14 1;
+#X connect 14 0 30 0;
+#X connect 14 0 31 0;
+#X connect 14 0 32 0;
+#X connect 14 0 33 0;
+#X connect 14 0 34 0;
+#X connect 15 0 60 0;
+#X connect 16 0 43 0;
+#X connect 16 0 44 0;
+#X connect 16 0 46 0;
+#X connect 16 0 47 0;
+#X connect 16 0 48 0;
+#X connect 17 0 49 0;
+#X connect 17 0 50 0;
+#X connect 17 1 42 0;
+#X connect 18 0 19 0;
+#X connect 18 0 19 1;
+#X connect 19 0 20 0;
+#X connect 19 0 20 1;
+#X connect 20 0 16 0;
+#X connect 20 0 39 0;
+#X connect 20 0 39 1;
+#X connect 22 0 21 0;
+#X connect 23 0 22 0;
+#X connect 24 0 22 0;
+#X connect 25 0 26 0;
+#X connect 26 0 24 0;
+#X connect 27 0 58 0;
+#X connect 27 1 17 0;
+#X connect 27 2 23 0;
+#X connect 28 0 29 1;
+#X connect 29 0 65 0;
+#X connect 30 0 44 1;
+#X connect 31 0 43 1;
+#X connect 32 0 46 1;
+#X connect 33 0 47 1;
+#X connect 34 0 48 1;
+#X connect 35 0 29 0;
+#X connect 36 0 29 0;
+#X connect 37 0 29 0;
+#X connect 38 0 29 0;
+#X connect 39 0 41 1;
+#X connect 40 0 16 1;
+#X connect 40 0 56 0;
+#X connect 41 0 65 0;
+#X connect 42 0 13 0;
+#X connect 43 0 35 0;
+#X connect 44 0 45 0;
+#X connect 45 0 29 0;
+#X connect 46 0 36 0;
+#X connect 47 0 37 0;
+#X connect 48 0 38 0;
+#X connect 49 0 18 0;
+#X connect 50 0 28 0;
+#X connect 56 0 41 0;
+#X connect 58 0 59 0;
+#X connect 59 0 25 0;
+#X connect 60 0 61 0;
+#X connect 61 0 40 0;
+#X connect 64 0 27 0;
+#X restore 27 297 pd kick;
 #X connect 1 0 6 0;
 #X connect 6 0 2 0;
 #X connect 6 1 3 0;
@@ -885,23 +885,23 @@
 #X connect 6 6 9 0;
 #X connect 6 7 10 0;
 #X connect 6 8 11 0;
-#X connect 13 0 25 0;
-#X connect 14 0 13 0;
+#X connect 13 0 30 0;
+#X connect 14 0 17 0;
 #X connect 15 0 18 0;
 #X connect 16 0 19 0;
-#X connect 17 0 20 0;
-#X connect 18 0 25 0;
-#X connect 19 0 25 0;
-#X connect 20 0 25 0;
-#X connect 21 0 22 0;
-#X connect 22 0 25 0;
+#X connect 17 0 24 0;
+#X connect 18 0 24 0;
+#X connect 19 0 24 0;
+#X connect 20 0 21 0;
+#X connect 21 0 24 0;
+#X connect 22 0 23 0;
 #X connect 23 0 24 0;
-#X connect 24 0 25 0;
-#X connect 26 0 29 0;
-#X connect 27 0 29 1;
-#X connect 28 0 30 0;
-#X connect 29 0 25 0;
-#X connect 30 0 25 0;
+#X connect 25 0 28 0;
+#X connect 26 0 28 1;
+#X connect 27 0 29 0;
+#X connect 28 0 24 0;
+#X connect 29 0 24 0;
+#X connect 30 0 24 0;
 #X restore 33 -170 pd beat-logic;
 #X obj 224 -24 *~;
 #X obj 294 -41 r master-volume-s;
@@ -1556,7 +1556,7 @@
 #X connect 18 4 7 0;
 #X restore 15 183 pd stringunit;
 #X obj 182 123 hsl 128 15 2 50 0 0 \$0-pick-location pick-location-knob
-empty -2 -6 0 10 -262144 -1 -1 12700 1;
+empty -2 -6 0 10 -262144 -1 -1 794 1;
 #X floatatom 179 147 5 0 0 0 - - -;
 #X text 163 147 1/;
 #X text 212 147 up string from bridge;
@@ -1634,8 +1634,8 @@ empty -2 -6 0 10 -262144 -1 -1 12700 1;
 #X msg 674 16 saving;
 #N canvas 0 0 1213 522 (subpatch) 0;
 #X array a-0 65 float 3;
-#A 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0
-0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+#A 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0
+0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
 ;
 #X coords 0 1 65 0 200 140 1 0 0;
 #X restore 790 -31 graph;
@@ -2556,11 +2556,11 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 #X obj 43 85 cnv 15 270 268 empty empty empty 20 12 0 14 -162280 -66577
 0;
 #X obj 45 56 hradio 15 1 0 9 instrument instrument_init empty 0 -8
-0 10 -262144 -1 -1 2;
+0 10 -262144 -1 -1 0;
 #X symbolatom 107 36 12 0 0 0 Instrument instrument_name do_not_use
 ;
-#X obj 55 96 tgl 25 0 onSeq1 onSeq-col1 empty 17 7 0 10 -262144 -33289
--262144 0 1;
+#X obj 55 96 tgl 25 0 onSeq1 onSeq-col1 empty 17 7 0 10 -1 -33289 -262144
+1 1;
 #X obj 85 96 tgl 25 0 onSeq2 onSeq-col2 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
 #X obj 115 96 tgl 25 0 onSeq3 onSeq-col3 empty 17 7 0 10 -262144 -33289
@@ -2575,8 +2575,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -262144 0 1;
 #X obj 275 96 tgl 25 0 onSeq8 onSeq-col8 empty 17 7 0 10 -262144 -33289
 -262144 0 1;
-#X obj 55 126 tgl 25 0 onSeq9 onSeq-col9 empty 17 7 0 10 -262144 -33289
--262144 0 1;
+#X obj 55 126 tgl 25 0 onSeq9 onSeq-col9 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 126 tgl 25 0 onSeq10 onSeq-col10 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 126 tgl 25 0 onSeq11 onSeq-col11 empty 17 7 0 10 -262144
@@ -2591,8 +2591,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -33289 -262144 0 1;
 #X obj 275 126 tgl 25 0 onSeq16 onSeq-col16 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 156 tgl 25 0 onSeq17 onSeq-col17 empty 17 7 0 10 -262144
--33289 -262144 0 1;
+#X obj 55 156 tgl 25 0 onSeq17 onSeq-col17 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 156 tgl 25 0 onSeq18 onSeq-col18 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 156 tgl 25 0 onSeq19 onSeq-col19 empty 17 7 0 10 -262144
@@ -2607,8 +2607,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -33289 -262144 0 1;
 #X obj 275 156 tgl 25 0 onSeq24 onSeq-col24 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 186 tgl 25 0 onSeq25 onSeq-col25 empty 17 7 0 10 -262144
--33289 -262144 0 1;
+#X obj 55 186 tgl 25 0 onSeq25 onSeq-col25 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 186 tgl 25 0 onSeq26 onSeq-col26 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 186 tgl 25 0 onSeq27 onSeq-col27 empty 17 7 0 10 -262144
@@ -2623,8 +2623,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -33289 -262144 0 1;
 #X obj 275 186 tgl 25 0 onSeq32 onSeq-col32 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 226 tgl 25 0 onSeq33 onSeq-col33 empty 17 7 0 10 -262144
--33289 -262144 0 1;
+#X obj 55 226 tgl 25 0 onSeq33 onSeq-col33 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 226 tgl 25 0 onSeq34 onSeq-col34 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 226 tgl 25 0 onSeq35 onSeq-col35 empty 17 7 0 10 -262144
@@ -2639,8 +2639,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -33289 -262144 0 1;
 #X obj 275 226 tgl 25 0 onSeq40 onSeq-col40 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 256 tgl 25 0 onSeq41 onSeq-col41 empty 17 7 0 10 -262144
--33289 -262144 0 1;
+#X obj 55 256 tgl 25 0 onSeq41 onSeq-col41 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 256 tgl 25 0 onSeq42 onSeq-col42 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 256 tgl 25 0 onSeq43 onSeq-col43 empty 17 7 0 10 -262144
@@ -2655,8 +2655,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -33289 -262144 0 1;
 #X obj 275 256 tgl 25 0 onSeq48 onSeq-col48 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 286 tgl 25 0 onSeq49 onSeq-col49 empty 17 7 0 10 -262144
--33289 -262144 0 1;
+#X obj 55 286 tgl 25 0 onSeq49 onSeq-col49 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 286 tgl 25 0 onSeq50 onSeq-col50 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 286 tgl 25 0 onSeq51 onSeq-col51 empty 17 7 0 10 -262144
@@ -2671,8 +2671,8 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 -33289 -262144 0 1;
 #X obj 275 286 tgl 25 0 onSeq56 onSeq-col56 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
-#X obj 55 316 tgl 25 0 onSeq57 onSeq-col57 empty 17 7 0 10 -262144
--33289 -262144 0 1;
+#X obj 55 316 tgl 25 0 onSeq57 onSeq-col57 empty 17 7 0 10 -1 -33289
+-262144 1 1;
 #X obj 85 316 tgl 25 0 onSeq58 onSeq-col58 empty 17 7 0 10 -262144
 -33289 -262144 0 1;
 #X obj 115 316 tgl 25 0 onSeq59 onSeq-col59 empty 17 7 0 10 -262144
@@ -2763,7 +2763,7 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 #X symbolatom 250 35 10 0 0 0 Time-sig time-sig-beat-r do_not_use;
 #X symbolatom 483 -6 10 0 0 0 Time-sig time-sig-bass-r do_not_use;
 #X obj 556 -6 hradio 15 1 0 4 time-sig-bass-s time-sig-bass-init empty
-0 -8 0 10 -262144 -1 -1 2;
+0 -8 0 10 -262144 -1 -1 0;
 #X obj 340 187 cnv 15 320 180 empty empty empty 20 12 0 14 -99865 -66577
 0;
 #X obj 351 197 cnv 15 85 160 empty empty empty 20 12 0 14 -162280 -66577
@@ -2780,7 +2780,7 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 0;
 #X obj 460 220 vu 15 120 beats-vu empty -1 -8 0 10 -1 -162280 1 0;
 #X obj 484 220 vsl 10 120 0 1 0 0 beats-volume-s beats-volume-r empty
-0 -9 0 10 -128992 -191407 -1 6500 1;
+0 -9 0 10 -128992 -191407 -1 10400 1;
 #X text 460 201 Beats;
 #X obj 518 197 cnv 15 60 160 empty empty empty 20 12 0 14 -162280 -66577
 0;
@@ -2800,6 +2800,6 @@ read a-6.ins \; a-7 read a-7.ins \; a-8 read a-8.ins \; bass read bass.ins
 0 10 -162280 -1 -262144;
 #X symbolatom 619 -85 15 0 0 0 - load_save_status -;
 #X obj 879 27 knob 32 32 0 50 0 0 pick-location-knob empty Pick 0 -8
-0 8 -262144 -1 -262144 3100 1;
+0 8 -262144 -1 -262144 0 1;
 #X obj 928 26 knob 32 32 0.5 0.989 0 0 leadmuting empty Mute 0 -8 0
-8 -262144 -1 -262144 3100 1;
+8 -262144 -1 -262144 0 1;
